@@ -12,11 +12,12 @@ class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      /* hasTrunfo, */
+      hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+
     return (
       <form className="formulare">
         <label htmlFor="name">
@@ -24,8 +25,9 @@ class Form extends Component {
           <input
             id="name"
             type="text"
-            onChange={ onInputChange }
+            name="cardName"
             value={ cardName }
+            onChange={ onInputChange }
             data-testid="name-input"
           />
         </label>
@@ -33,8 +35,9 @@ class Form extends Component {
           Descrição:
           <textarea
             id="description"
-            onChange={ onInputChange }
+            name="cardDescription"
             value={ cardDescription }
+            onChange={ onInputChange }
             data-testid="description-input"
           />
         </label>
@@ -43,8 +46,9 @@ class Form extends Component {
           <input
             id="attribute-1"
             type="number"
-            onChange={ onInputChange }
+            name="cardAttr1"
             value={ cardAttr1 }
+            onChange={ onInputChange }
             data-testid="attr1-input"
           />
         </label>
@@ -53,6 +57,7 @@ class Form extends Component {
           <input
             id="attribute-2"
             type="number"
+            name="cardAttr2"
             onChange={ onInputChange }
             value={ cardAttr2 }
             data-testid="attr2-input"
@@ -63,8 +68,9 @@ class Form extends Component {
           <input
             id="attribute-3"
             type="number"
-            onChange={ onInputChange }
+            name="cardAttr3"
             value={ cardAttr3 }
+            onChange={ onInputChange }
             data-testid="attr3-input"
           />
         </label>
@@ -73,8 +79,9 @@ class Form extends Component {
           <input
             id="image"
             type="text"
-            onChange={ onInputChange }
+            name="image"
             value={ cardImage }
+            onChange={ onInputChange }
             data-testid="image-input"
           />
         </label>
@@ -82,25 +89,31 @@ class Form extends Component {
           Raridade:
           <select
             id="rarity"
-            onChange={ onInputChange }
+            name="cardRare"
             value={ cardRare }
+            onChange={ onInputChange }
             data-testid="rare-input"
           >
-            <option name="normal">normal</option>
-            <option name="raro">raro</option>
-            <option name="muito-raro">muito raro</option>
+            <option value="normal">normal</option>
+            <option value="raro">raro</option>
+            <option value="muito-raro">muito raro</option>
           </select>
         </label>
-        <label htmlFor="super-trump">
-          Super trunfo
-          <input
-            id="super-trump"
-            type="checkbox"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-            data-testid="trunfo-input"
-          />
-        </label>
+        {
+          (hasTrunfo === true) ? <span>Você já tem um super Trunfo em seu baralho</span>
+            : (
+              <label htmlFor="super-trump">
+                Super trunfo
+                <input
+                  id="super-trump"
+                  type="checkbox"
+                  name="cardTrunfo"
+                  checked={ cardTrunfo }
+                  onChange={ onInputChange }
+                  data-testid="trunfo-input"
+                />
+              </label>)
+        }
         <button
           type="submit"
           disabled={ isSaveButtonDisabled }
@@ -123,7 +136,7 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  /* hasTrunfo: PropTypes.bool.isRequired, */
+  hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
