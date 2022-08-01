@@ -18,7 +18,7 @@ class Form extends Component {
       onSaveButtonClick,
     } = this.props;
     return (
-      <form className="forms">
+      <form className="formulare">
         <label htmlFor="name">
           Nome:
           <input
