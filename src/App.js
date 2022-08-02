@@ -8,7 +8,7 @@ class App extends React.Component {
     super();
 
     /* this.onInputChange = this.onInputChange.bind(this); */ // usei callback e não usei o bind
-
+    /* this.onSaveButtonClick = this.onSaveButtonClick.bind(this); */
     this.state = {
       cardName: '',
       cardDescription: '',
@@ -19,6 +19,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      cardSaved: [],
     };
   }
 
@@ -29,6 +30,42 @@ class App extends React.Component {
     this.setState({
       [name]: value,
     }, this.validationField);
+  }
+
+  onSaveButtonClick = () => { // função do botao salvar cartas
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo } = this.state;
+
+    const card = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+
+    this.setState((cardsave) => ({
+      cardSaved: [...cardsave.cardSaved, card],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
+    }
+    ));
   }
 
   validationField = () => {
@@ -97,6 +134,7 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
             onInputChange={ this.onInputChange }
             isSaveButtonDisabled={ isSaveButtonDisabled }
+            onSaveButtonClick={ this.onSaveButtonClick }
           />
         </div>
         <div className="card">
