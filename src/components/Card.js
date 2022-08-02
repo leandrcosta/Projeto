@@ -15,14 +15,21 @@ class Card extends Component {
     } = this.props;
 
     return (
-      <section>
-        <span data-testid="name-card">{ cardName }</span>
-        <img data-testid="image-card" src={ cardImage } alt={ cardName } />
+      <section className="cards">
+        <h2 className="title" data-testid="name-card">{ cardName }</h2>
+        <img
+          className="card-image"
+          data-testid="image-card"
+          src={ cardImage }
+          alt={ cardName }
+        />
         <p data-testid="description-card">{ cardDescription }</p>
-        <span data-testid="attr1-card">{ cardAttr1 }</span>
-        <span data-testid="attr2-card">{ cardAttr2 }</span>
-        <span data-testid="attr3-card">{ cardAttr3 }</span>
-        <span data-testid="rare-card">{ cardRare }</span>
+        <ul>
+          <li data-testid="attr1-card">{ cardAttr1 }</li>
+          <li data-testid="attr2-card">{ cardAttr2 }</li>
+          <li data-testid="attr3-card">{ cardAttr3 }</li>
+          <li data-testid="rare-card">{ cardRare }</li>
+        </ul>
         { cardTrunfo === true && (<span data-testid="trunfo-card">Super Trunfo</span>)}
       </section> // renderização condicional - link:youtube.com/watch?v==rF6guBbfT|0
     );

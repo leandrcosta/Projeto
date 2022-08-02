@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import './App.css';
 
 class App extends React.Component {
   constructor() {
@@ -44,8 +45,12 @@ class App extends React.Component {
     const sumMaxx = 210;
     const valueMaxx = 90;
     // Validando se as strings estão 'vazias'
-    const attributeStrings = cardName.length > 0 && cardDescription.length > 0
-                            && cardImage.length > 0 && cardRare.length > 0;
+    const verifyName = cardName.length > 0;
+    const verifyDescription = cardDescription.length > 0;
+    const verifyImage = cardImage.length > 0;
+    const verifyRare = cardRare.length > 0;
+    // validando que nenhum desses campos esteja 'vazio'
+    const attributeStrings = verifyName && verifyDescription && verifyImage && verifyRare;
 
     // validando que o valor tem que ser > 0 e < 90
     const attr01 = Number(cardAttr1) >= 0 && Number(cardAttr1) <= valueMaxx;
@@ -57,11 +62,11 @@ class App extends React.Component {
     const sumAttributes = Number(cardAttr1)
                           + Number(cardAttr2)
                           + Number(cardAttr3) <= sumMaxx;
-    /* const checkVerify = attributeStrings && verifyAttibute && sumAttributes; */
+    const checkVerify = attributeStrings && verifyAttibute && sumAttributes;
 
-    if (attributeStrings && verifyAttibute && sumAttributes) {
-      this.setState({ isSaveButtonDisabled: true });
-    } else this.setState({ isSaveButtonDisabled: false });
+    if (checkVerify) {
+      this.setState({ isSaveButtonDisabled: false });
+    } else this.setState({ isSaveButtonDisabled: true });
   };
 
   render() {
@@ -80,36 +85,32 @@ class App extends React.Component {
     return (
       <section className="form-card">
         <h1>Tryunfo</h1>
-        <section className="forms">
-          <div>
-            <Form
-              cardName={ cardName }
-              cardDescription={ cardDescription }
-              cardAttr1={ cardAttr1 }
-              cardAttr2={ cardAttr2 }
-              cardAttr3={ cardAttr3 }
-              cardImage={ cardImage }
-              cardRare={ cardRare }
-              cardTrunfo={ cardTrunfo }
-              onInputChange={ this.onInputChange }
-              isSaveButtonDisabled={ isSaveButtonDisabled }
-            />
-          </div>
-        </section>
-        <section className="card">
-          <div>
-            <Card
-              cardName={ cardName }
-              cardDescription={ cardDescription }
-              cardAttr1={ cardAttr1 }
-              cardAttr2={ cardAttr2 }
-              cardAttr3={ cardAttr3 }
-              cardImage={ cardImage }
-              cardRare={ cardRare }
-              cardTrunfo={ cardTrunfo }
-            />
-          </div>
-        </section>
+        <div className="forms">
+          <Form
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+            onInputChange={ this.onInputChange }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
+          />
+        </div>
+        <div className="card">
+          <Card
+            cardName={ cardName }
+            cardImage={ cardImage }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+          />
+        </div>
       </section>
     );
   }

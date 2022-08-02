@@ -34,6 +34,8 @@ class Form extends Component {
         <label htmlFor="description">
           Descrição:
           <textarea
+            cols={ 30 }
+            rows="5"
             id="description"
             name="cardDescription"
             value={ cardDescription }
@@ -77,9 +79,8 @@ class Form extends Component {
         <label htmlFor="image">
           Imagem:
           <input
-            id="image"
             type="text"
-            name="image"
+            name="cardImage"
             value={ cardImage }
             onChange={ onInputChange }
             data-testid="image-input"
