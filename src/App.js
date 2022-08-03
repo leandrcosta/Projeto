@@ -66,7 +66,14 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
     }
-    ));
+    ), this.validationSuperTrunfo);
+  }
+  // verifica se ao menos um dos cards salvos, corrresponde a logica da função.
+
+  validationSuperTrunfo = () => {
+    const { cardSaved } = this.state;
+    const trunfoValidationCard = cardSaved.some(({ cardTrunfo }) => cardTrunfo === true);
+    this.setState({ hasTrunfo: trunfoValidationCard });
   }
 
   validationField = () => {

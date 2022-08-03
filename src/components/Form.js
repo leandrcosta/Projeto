@@ -109,11 +109,13 @@ class Form extends Component {
                   id="super-trump"
                   type="checkbox"
                   name="cardTrunfo"
+                  value={ cardTrunfo }
                   checked={ cardTrunfo }
                   onChange={ onInputChange }
                   data-testid="trunfo-input"
                 />
-              </label>)
+              </label>
+            )
         }
         <button
           htmlFor="save"
